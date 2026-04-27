@@ -1,0 +1,24 @@
+id: webflow
+name: Webflow site missing
+service: Webflow
+severity: high
+confidence: high
+description: A host points at Webflow and Webflow does not have a site configured for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - proxy-ssl.webflow.com
+      - proxy.webflow.com
+      - webflow.io
+  http:
+    status:
+      - 404
+    body:
+      contains:
+        - The page you are looking for doesn't exist or has been moved
+references:
+  - https://help.webflow.com/hc/en-us/articles/33961305602963-Connect-a-custom-domain

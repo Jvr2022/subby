@@ -1,0 +1,22 @@
+id: heroku
+name: Heroku missing app
+service: Heroku
+severity: high
+confidence: high
+description: A host points at Heroku and the platform reports that no app is serving it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - herokudns.com
+      - herokuapp.com
+  http:
+    body:
+      contains:
+        - No such app
+        - "There's nothing here, yet."
+references:
+  - https://devcenter.heroku.com/articles/custom-domains

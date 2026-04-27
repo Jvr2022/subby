@@ -1,0 +1,21 @@
+id: fastly
+name: Fastly unknown domain
+service: Fastly
+severity: high
+confidence: high
+description: A host points at Fastly but the edge does not recognize the domain.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - fastly.net
+      - fastlylb.net
+  http:
+    body:
+      contains:
+        - "Fastly error: unknown domain"
+references:
+  - https://docs.fastly.com/en/guides/working-with-domains

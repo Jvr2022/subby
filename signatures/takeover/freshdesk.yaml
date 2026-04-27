@@ -1,0 +1,21 @@
+id: freshdesk
+name: Freshdesk portal unavailable
+service: Freshdesk
+severity: medium
+confidence: medium
+description: A host points at Freshdesk and the support portal cannot be reached.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - freshdesk.com
+  http:
+    body:
+      contains:
+        - The portal you are looking for is not available
+        - Maybe this Freshdesk support portal no longer exists
+references:
+  - https://support.freshdesk.com/support/solutions/articles/37590-set-up-a-custom-portal-url-and-verify-dns

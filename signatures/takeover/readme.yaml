@@ -1,0 +1,23 @@
+id: readme
+name: ReadMe project missing
+service: ReadMe
+severity: medium
+confidence: medium
+description: A host points at ReadMe and the documentation project is not available.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - readme.io
+      - readmessl.com
+  http:
+    body:
+      contains:
+        - Project doesn't exist
+        - Project doesnt exist
+        - Unknown Project
+references:
+  - https://docs.readme.com/main/docs/custom-domains

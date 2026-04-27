@@ -1,0 +1,22 @@
+id: github-pages
+name: GitHub Pages unclaimed site
+service: GitHub Pages
+severity: high
+confidence: high
+description: A host points at GitHub Pages and GitHub reports that no Pages site is configured there.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - github.io
+  http:
+    status:
+      - 404
+    body:
+      contains:
+        - "There isn't a GitHub Pages site here."
+references:
+  - https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site

@@ -1,0 +1,25 @@
+id: aws-s3
+name: AWS S3 bucket missing
+service: AWS S3
+severity: high
+confidence: high
+description: A host points at an S3 website or bucket endpoint that reports a missing bucket.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - s3.amazonaws.com
+      - s3-website
+      - amazonaws.com
+  http:
+    status:
+      - 404
+    body:
+      contains:
+        - NoSuchBucket
+        - The specified bucket does not exist
+references:
+  - https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html

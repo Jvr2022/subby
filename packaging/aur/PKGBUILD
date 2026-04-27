@@ -1,0 +1,27 @@
+# Maintainer: Jvr2022
+pkgname=subby
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Template-driven subdomain takeover scanner"
+arch=("x86_64" "aarch64")
+url="https://github.com/Jvr2022/subby"
+license=("MIT")
+makedepends=("go")
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=("SKIP")
+
+build() {
+  cd "${pkgname}-${pkgver}"
+  export CGO_ENABLED=0
+  go build -trimpath \
+    -ldflags "-s -w -X github.com/Jvr2022/subby/pkg/version.Version=${pkgver}" \
+    -o subby ./cmd/subby
+}
+
+package() {
+  cd "${pkgname}-${pkgver}"
+  install -Dm755 subby "${pkgdir}/usr/bin/subby"
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm644 readme.md "${pkgdir}/usr/share/doc/${pkgname}/readme.md"
+  install -Dm644 docs/signatures.md "${pkgdir}/usr/share/doc/${pkgname}/signatures.md"
+}

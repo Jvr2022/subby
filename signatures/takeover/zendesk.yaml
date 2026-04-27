@@ -1,0 +1,22 @@
+id: zendesk-guide
+name: Zendesk Guide missing help center
+service: Zendesk Guide
+severity: medium
+confidence: medium
+description: A host points at Zendesk Guide and the help center is not available.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - zendesk.com
+      - zendeskhosted.com
+  http:
+    body:
+      contains:
+        - Help Center Closed
+        - The help center no longer exists
+references:
+  - https://support.zendesk.com/hc/en-us/articles/4408838571930-Changing-the-address-of-your-help-center-subdomain-host-mapping

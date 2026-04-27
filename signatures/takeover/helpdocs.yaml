@@ -1,0 +1,22 @@
+id: helpdocs
+name: HelpDocs knowledge base missing
+service: HelpDocs
+severity: medium
+confidence: medium
+description: A host points at HelpDocs and no knowledge base is configured for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - helpdocs.io
+      - domains.helpdocs.io
+  http:
+    body:
+      contains:
+        - We could not find what you are looking for
+        - This help center does not exist
+references:
+  - https://support.helpdocs.io/

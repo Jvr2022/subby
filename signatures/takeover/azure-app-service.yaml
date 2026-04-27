@@ -1,0 +1,23 @@
+id: azure-app-service
+name: Azure App Service missing site
+service: Azure App Service
+severity: medium
+confidence: medium
+description: A host points at an Azure App Service style endpoint returning an unconfigured site page.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - azurewebsites.net
+      - trafficmanager.net
+      - cloudapp.net
+  http:
+    body:
+      contains:
+        - 404 Web Site not found
+        - The web app you have attempted to reach is currently stopped
+references:
+  - https://learn.microsoft.com/azure/app-service/app-service-web-tutorial-custom-domain

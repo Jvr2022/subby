@@ -1,0 +1,23 @@
+id: vercel
+name: Vercel deployment not found
+service: Vercel
+severity: high
+confidence: high
+description: A host points at Vercel and Vercel reports that no deployment is configured for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - vercel-dns.com
+      - now-dns.com
+      - cname.vercel-dns.com
+  http:
+    body:
+      contains:
+        - DEPLOYMENT_NOT_FOUND
+        - The deployment could not be found
+references:
+  - https://vercel.com/docs/projects/domains

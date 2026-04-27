@@ -1,0 +1,21 @@
+id: tumblr
+name: Tumblr unclaimed blog
+service: Tumblr
+severity: medium
+confidence: medium
+description: A host points at Tumblr and Tumblr does not have a blog configured for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - domains.tumblr.com
+      - tumblr.com
+  http:
+    body:
+      contains:
+        - Whatever you were looking for doesn't currently exist at this address.
+references:
+  - https://help.tumblr.com/custom-domains/

@@ -1,0 +1,21 @@
+id: ghost
+name: Ghost site missing
+service: Ghost
+severity: medium
+confidence: medium
+description: A host points at Ghost and the publication is not available.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - ghost.io
+  http:
+    body:
+      contains:
+        - The thing you were looking for is no longer here
+        - Site unavailable
+references:
+  - https://ghost.org/help/using-custom-domains/

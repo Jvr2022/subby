@@ -1,0 +1,23 @@
+id: cloudflare-pages
+name: Cloudflare Pages unconfigured domain
+service: Cloudflare Pages
+severity: medium
+confidence: medium
+description: A host points at Cloudflare Pages but the custom domain is not active on a Pages project.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - pages.dev
+  http:
+    status:
+      - 522
+    body:
+      contains:
+        - Error code 522
+        - Connection timed out
+references:
+  - https://developers.cloudflare.com/pages/configuration/custom-domains/

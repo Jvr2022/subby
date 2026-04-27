@@ -1,0 +1,50 @@
+version: 2
+
+project_name: subby
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: subby
+    main: ./cmd/subby
+    binary: subby
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/Jvr2022/subby/pkg/version.Version={{ .Version }}
+      - -X github.com/Jvr2022/subby/pkg/version.Commit={{ .Commit }}
+      - -X github.com/Jvr2022/subby/pkg/version.Date={{ .Date }}
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files:
+      - LICENSE
+      - readme.md
+      - docs/*
+
+checksum:
+  name_template: checksums.txt
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"

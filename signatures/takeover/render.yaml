@@ -1,0 +1,22 @@
+id: render
+name: Render service missing
+service: Render
+severity: medium
+confidence: medium
+description: A host points at Render and Render does not have a service for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - onrender.com
+      - renderdns.com
+  http:
+    body:
+      contains:
+        - The page you were looking for does not exist
+        - no such app
+references:
+  - https://render.com/docs/custom-domains

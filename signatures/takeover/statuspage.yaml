@@ -1,0 +1,20 @@
+id: statuspage
+name: Statuspage page missing
+service: Statuspage
+severity: medium
+confidence: medium
+description: A host points at Atlassian Statuspage and no page is configured for it.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - statuspage.io
+  http:
+    body:
+      contains:
+        - This page is currently unavailable
+references:
+  - https://support.atlassian.com/statuspage/docs/set-a-custom-domain-and-ssl/

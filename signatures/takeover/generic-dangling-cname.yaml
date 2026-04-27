@@ -1,0 +1,15 @@
+id: generic-dangling-cname
+name: Dangling CNAME
+service: DNS
+severity: medium
+confidence: medium
+description: A CNAME chain exists but does not resolve to any address.
+takeover: false
+requires:
+  - cname
+  - dangling
+matchers:
+  dangling: true
+  cname:
+    regex:
+      - ".+"

@@ -1,0 +1,21 @@
+id: surge
+name: Surge project missing
+service: Surge
+severity: high
+confidence: high
+description: A host points at Surge and Surge reports that the project is missing or unclaimed.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - surge.sh
+  http:
+    body:
+      contains:
+        - project not found
+        - "You're almost there"
+references:
+  - https://surge.sh/help/adding-a-custom-domain

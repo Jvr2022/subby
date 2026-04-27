@@ -1,0 +1,22 @@
+id: intercom
+name: Intercom Help Center missing
+service: Intercom
+severity: medium
+confidence: medium
+description: A host points at Intercom Articles but the help center is not configured.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - custom.intercom.help
+      - intercom.help
+  http:
+    body:
+      contains:
+        - Uh oh. That page doesn't exist
+        - This Help Center is not available
+references:
+  - https://www.intercom.com/help/en/articles/180-customize-the-url-for-your-help-center

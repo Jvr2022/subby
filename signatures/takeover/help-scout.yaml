@@ -1,0 +1,20 @@
+id: help-scout-docs
+name: Help Scout Docs missing company
+service: Help Scout Docs
+severity: medium
+confidence: medium
+description: A host points at Help Scout Docs and the configured docs site cannot be found.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - helpscoutdocs.com
+  http:
+    body:
+      contains:
+        - No settings were found for this company
+references:
+  - https://docs.helpscout.com/article/42-create-a-custom-domain

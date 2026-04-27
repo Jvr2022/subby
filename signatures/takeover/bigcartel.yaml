@@ -1,0 +1,21 @@
+id: bigcartel
+name: Big Cartel shop missing
+service: Big Cartel
+severity: medium
+confidence: medium
+description: A host points at Big Cartel and the storefront is not configured.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - bigcartel.com
+  http:
+    body:
+      contains:
+        - "Oops! We couldn't find that page."
+        - This store is unavailable
+references:
+  - https://help.bigcartel.com/custom-domains

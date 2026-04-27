@@ -1,0 +1,22 @@
+id: netlify
+name: Netlify unconfigured site
+service: Netlify
+severity: high
+confidence: high
+description: A host points at Netlify and the platform reports that the site is not configured.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - netlify.app
+      - netlify.com
+  http:
+    body:
+      contains:
+        - Not Found - Request ID
+        - "If this is your site, please make sure that the DNS settings are correct"
+references:
+  - https://docs.netlify.com/domains-https/custom-domains/

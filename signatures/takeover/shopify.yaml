@@ -1,0 +1,21 @@
+id: shopify
+name: Shopify unavailable shop
+service: Shopify
+severity: high
+confidence: high
+description: A host points at Shopify and Shopify reports that the shop is unavailable.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - myshopify.com
+      - shops.myshopify.com
+  http:
+    body:
+      contains:
+        - Sorry, this shop is currently unavailable.
+references:
+  - https://help.shopify.com/en/manual/domains

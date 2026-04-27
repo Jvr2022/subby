@@ -1,0 +1,25 @@
+id: read-the-docs
+name: Read the Docs project missing
+service: Read the Docs
+severity: high
+confidence: high
+description: A host points at Read the Docs and the project or custom domain is not available.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - readthedocs.io
+      - readthedocs.org
+      - readthedocs.com
+  http:
+    status:
+      - 404
+    body:
+      contains:
+        - Project not found
+        - unknown domain
+references:
+  - https://docs.readthedocs.com/platform/latest/guides/custom-domains.html

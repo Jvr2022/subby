@@ -1,0 +1,21 @@
+id: pantheon
+name: Pantheon unknown site
+service: Pantheon
+severity: medium
+confidence: medium
+description: A host points at Pantheon and the platform reports that the site is not known.
+takeover: true
+requires:
+  - cname
+  - http
+matchers:
+  cname:
+    contains:
+      - pantheonsite.io
+  http:
+    body:
+      contains:
+        - The gods are wise
+        - 404 error unknown site
+references:
+  - https://docs.pantheon.io/guides/domains
